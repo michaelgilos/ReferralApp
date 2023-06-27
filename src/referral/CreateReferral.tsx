@@ -4,19 +4,7 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import InputHeader from '../components/InputHeader';
 import InputLabel from '../components/InputLabel';
 import InputPicker from '../components/InputPicker';
-
-type Referral = {
-  firstname?: string;
-  lastname?: string;
-  email?: string;
-  mobile?: string;
-  address1?: string;
-  address2?: string;
-  suburb?: string;
-  state?: string;
-  postcode?: string;
-  country?: string;
-};
+import {Referral} from '../types';
 
 export default () => {
   const [data, setData] = useState<Referral>({});
