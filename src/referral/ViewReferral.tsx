@@ -36,6 +36,7 @@ const ReferralItem = ({data}: {data: Referral}) => {
   );
 };
 
+// TODO this could be a flatlist
 const ReferralContent = ({items}: {items: Referral[]}) => (
   <>
     {items.map((item: Referral) => (
