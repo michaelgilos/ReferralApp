@@ -29,7 +29,7 @@ curl --request GET \
   --header 'Content-Type: application/json'
 
 Create referral
-curl --request POST \
+`curl --request POST \
   --url http://localhost:1337/referrals \
   --header 'Content-Type: application/json' \
   --data '{
@@ -43,7 +43,7 @@ curl --request POST \
 		"state": null,
 		"postcode": null,
 		"country": null
-	}'
+	}'`
 ----
 
 ### How do I start the app?
@@ -53,7 +53,8 @@ Start with
 2 `npx react-native run-ios` or `npx react-native run-android` to run the app
 3 run the server `yarn server`
 
-NOTE: Before running app in android emulator or real device
+NOTE: This has only been tested in android.
+Before running app in android emulator or real device
 1. run `adb devices`
 2. 
 List of devices attached
