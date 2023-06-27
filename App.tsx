@@ -5,10 +5,12 @@
  * @format
  */
 
-import {Divider, Header, Tab} from '@rneui/themed';
+import {Divider, Header, Tab, TabView} from '@rneui/themed';
 import React, {useState} from 'react';
 import {StatusBar, StyleSheet, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import CreateReferral from './src/referral/CreateReferral';
+import ViewReferral from './src/referral/ViewReferral';
 
 function App(): JSX.Element {
   const [index, setIndex] = useState(0);
@@ -26,6 +28,15 @@ function App(): JSX.Element {
           />
           <Divider />
         </View>
+
+        <TabView value={index} onChange={setIndex} animationType="spring">
+          <TabView.Item style={{width: '100%'}}>
+            <CreateReferral />
+          </TabView.Item>
+          <TabView.Item style={{width: '100%'}}>
+            <ViewReferral />
+          </TabView.Item>
+        </TabView>
 
         <Tab
           value={index}
