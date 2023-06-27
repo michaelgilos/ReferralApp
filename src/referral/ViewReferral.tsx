@@ -51,27 +51,27 @@ export default () => {
   const data: Referral[] = [
     {
       firstname: 'Justin Biebs',
-      email: 'example@email.com',
-      mobile: '0436-283-2938',
+      email: 'biebs@email.com',
+      mobile: '1234-283-2938',
     },
     {
       firstname: 'Levy Ackerman',
-      email: 'example@email.com',
+      email: 'levy@email.com',
       mobile: '0436-283-2938',
     },
     {
       firstname: 'Mikasa Ackerman',
-      email: 'example@email.com',
+      email: 'mikasa@email.com',
       mobile: '0436-283-2938',
     },
     {
       firstname: 'Itachi Uchiha',
-      email: 'example@email.com',
+      email: 'uchiha@email.com',
       mobile: '0436-283-2938',
     },
     {
       firstname: 'Ichigo Kurosaki',
-      email: 'example@email.com',
+      email: 'ichi@email.com',
       mobile: '0436-283-2938',
     },
     {
@@ -96,10 +96,21 @@ export default () => {
     },
     {
       firstname: 'Shanks',
-      email: 'example@email.com',
+      email: 'blue_sky@email.com',
       mobile: '0436-283-2938',
     },
   ];
+
+  const filtered = data.filter(item => {
+    if (search.match(/^-?\d+$/)) {
+      return item.mobile?.includes(search);
+    }
+
+    return (
+      item.firstname?.toLowerCase().includes(search) ||
+      item.email?.toLowerCase().includes(search)
+    );
+  });
 
   return (
     <ScrollView>
@@ -136,7 +147,7 @@ export default () => {
 
         <Header />
 
-        <ReferralContent items={data} />
+        <ReferralContent items={filtered} />
       </View>
     </ScrollView>
   );
