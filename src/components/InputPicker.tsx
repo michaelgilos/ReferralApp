@@ -9,12 +9,18 @@ export type InputPickerData = {
 
 type InputPickerProps = {
   label: string;
+  value?: string;
   data: InputPickerData[];
   onItemSelected: (value: string) => void;
 };
 
-export default ({label, data, onItemSelected}: InputPickerProps) => {
-  const [value, setValue] = useState('');
+export default ({
+  label,
+  value = '',
+  data,
+  onItemSelected,
+}: InputPickerProps) => {
+  const [initialValue, setInitialValue] = useState(value);
 
   let index = 0;
 
@@ -35,11 +41,11 @@ export default ({label, data, onItemSelected}: InputPickerProps) => {
           scrollViewAccessibilityLabel={'Scrollable options'}
           cancelButtonAccessibilityLabel={'Cancel Button'}
           onChange={option => {
-            setValue(option.label);
+            setInitialValue(option.label);
             onItemSelected(option.label);
           }}>
           <Input
-            value={value}
+            value={initialValue}
             placeholder="Select..."
             disabled={true}
             style={{fontSize: 16}}

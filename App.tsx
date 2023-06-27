@@ -13,7 +13,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import CreateReferral from './src/features/referrals/CreateReferral';
 import ViewReferral from './src/features/referrals/ViewReferral';
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 function App(): JSX.Element {
   const [index, setIndex] = useState(0);

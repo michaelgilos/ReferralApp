@@ -12,19 +12,6 @@
       "state": null,
       "postcode": null,
       "country": null
-    },
-    {
-      "firstname": "Dark King",
-      "lastname": "Reighly",
-      "email": "dk@test.com",
-      "mobile": "0436-283-1234",
-      "address1": null,
-      "address2": null,
-      "suburb": null,
-      "state": null,
-      "postcode": null,
-      "country": null,
-      "id": 2
     }
   ]
 }

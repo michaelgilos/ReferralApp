@@ -4,13 +4,15 @@ import {View} from 'react-native';
 
 type InputLabelProps = {
   label: string;
+  value?: string;
   onInputTextChange: (text: string) => void;
 };
 
-export default ({label, onInputTextChange}: InputLabelProps) => (
+export default ({label, value = '', onInputTextChange}: InputLabelProps) => (
   <View style={{marginVertical: 10}}>
     <Text>{label}</Text>
     <Input
+      value={value}
       style={{fontSize: 16}}
       inputContainerStyle={{
         borderBottomWidth: 0,
