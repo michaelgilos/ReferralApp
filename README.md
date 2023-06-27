@@ -20,6 +20,7 @@ Guidelines
 steps / explanations / set up instructions we may need to test the submission
 · Please structure the code for reusability
 
+###(this took around 6 hours to setup and complete)
 
 Backend API
 ----
