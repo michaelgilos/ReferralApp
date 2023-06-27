@@ -4,8 +4,32 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import InputHeader from '../components/InputHeader';
 import InputLabel from '../components/InputLabel';
 
+type Referral = {
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+  mobile?: string;
+  address1?: string;
+  address2?: string;
+  suburb?: string;
+  state?: string;
+  postcode?: string;
+  country?: string;
+};
+
 export default () => {
-  const [name, setName] = useState('');
+  const [data, setData] = useState<Referral>({});
+
+  const onChangeData = (prop: string) => (value: string) => {
+    setData({
+      ...data,
+      [prop]: value,
+    });
+  };
+
+  console.log({
+    data,
+  });
 
   return (
     <ScrollView>
@@ -16,17 +40,32 @@ export default () => {
 
         <InputHeader label="Personal details" />
 
-        <InputLabel label="First name" onInputTextChange={setName} />
-        <InputLabel label="Last name" onInputTextChange={setName} />
-        <InputLabel label="Email" onInputTextChange={setName} />
-        <InputLabel label="Mobile" onInputTextChange={setName} />
+        <InputLabel
+          label="First name"
+          onInputTextChange={onChangeData('firstname')}
+        />
+        <InputLabel
+          label="Last name"
+          onInputTextChange={onChangeData('lastname')}
+        />
+        <InputLabel label="Email" onInputTextChange={onChangeData('email')} />
+        <InputLabel label="Mobile" onInputTextChange={onChangeData('mobile')} />
 
         <InputHeader label="Address" />
 
-        <InputLabel label="Address line 1" onInputTextChange={setName} />
-        <InputLabel label="Address line 2" onInputTextChange={setName} />
-        <InputLabel label="Suburb" onInputTextChange={setName} />
-        <InputLabel label="Postcode" onInputTextChange={setName} />
+        <InputLabel
+          label="Address line 1"
+          onInputTextChange={onChangeData('address1')}
+        />
+        <InputLabel
+          label="Address line 2"
+          onInputTextChange={onChangeData('address2')}
+        />
+        <InputLabel label="Suburb" onInputTextChange={onChangeData('suburb')} />
+        <InputLabel
+          label="Postcode"
+          onInputTextChange={onChangeData('postcode')}
+        />
 
         <Button
           title="Create referral"
