@@ -1,7 +1,7 @@
 import {Button, Icon, SearchBar, Text} from '@rneui/themed';
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {Referral} from '../types';
+import {Referral} from '../../types';
 
 const Header = () => (
   <View style={styles.header}>

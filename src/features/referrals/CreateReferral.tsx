@@ -1,10 +1,10 @@
 import {Button, Text} from '@rneui/themed';
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import InputHeader from '../components/InputHeader';
-import InputLabel from '../components/InputLabel';
-import InputPicker from '../components/InputPicker';
-import {Referral} from '../types';
+import InputHeader from '../../components/InputHeader';
+import InputLabel from '../../components/InputLabel';
+import InputPicker from '../../components/InputPicker';
+import {Referral} from '../../types';
 
 export default () => {
   const [data, setData] = useState<Referral>({});

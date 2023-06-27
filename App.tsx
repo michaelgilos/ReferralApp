@@ -9,8 +9,8 @@ import {Divider, Header, Tab, TabView} from '@rneui/themed';
 import React, {useState} from 'react';
 import {StatusBar, StyleSheet, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import CreateReferral from './src/referral/CreateReferral';
-import ViewReferral from './src/referral/ViewReferral';
+import CreateReferral from './src/features/referrals/CreateReferral';
+import ViewReferral from './src/features/referrals/ViewReferral';
 
 function App(): JSX.Element {
   const [index, setIndex] = useState(0);
