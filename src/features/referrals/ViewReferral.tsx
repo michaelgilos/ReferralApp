@@ -1,7 +1,8 @@
 import {Button, Icon, SearchBar, Text} from '@rneui/themed';
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import {Referral} from '../../types';
+import {useGetAllReferrals} from './hooks/useGetAllReferrals';
 
 const Header = () => (
   <View style={styles.header}>
@@ -48,60 +49,11 @@ const ReferralContent = ({items}: {items: Referral[]}) => (
 export default () => {
   const [search, setSearch] = useState('');
 
-  const data: Referral[] = [
-    {
-      firstname: 'Justin Biebs',
-      email: 'biebs@email.com',
-      mobile: '1234-283-2938',
-    },
-    {
-      firstname: 'Levy Ackerman',
-      email: 'levy@email.com',
-      mobile: '0436-283-2938',
-    },
-    {
-      firstname: 'Mikasa Ackerman',
-      email: 'mikasa@email.com',
-      mobile: '0436-283-2938',
-    },
-    {
-      firstname: 'Itachi Uchiha',
-      email: 'uchiha@email.com',
-      mobile: '0436-283-2938',
-    },
-    {
-      firstname: 'Ichigo Kurosaki',
-      email: 'ichi@email.com',
-      mobile: '0436-283-2938',
-    },
-    {
-      firstname: 'Monkey D. Luffy',
-      email: 'example@email.com',
-      mobile: '0436-283-2938',
-    },
-    {
-      firstname: 'Kaido',
-      email: 'example@email.com',
-      mobile: '0436-283-2938',
-    },
-    {
-      firstname: 'Big Mom',
-      email: 'example@email.com',
-      mobile: '0436-283-2938',
-    },
-    {
-      firstname: 'Roger',
-      email: 'example@email.com',
-      mobile: '0436-283-2938',
-    },
-    {
-      firstname: 'Shanks',
-      email: 'blue_sky@email.com',
-      mobile: '0436-283-2938',
-    },
-  ];
+  const {data, isLoading} = useGetAllReferrals();
 
-  const filtered = data.filter(item => {
+  console.log(data);
+
+  const filtered = data?.filter(item => {
     if (search.match(/^-?\d+$/)) {
       return item.mobile?.includes(search);
     }
@@ -147,7 +99,11 @@ export default () => {
 
         <Header />
 
-        <ReferralContent items={filtered} />
+        {isLoading ? (
+          <ActivityIndicator size={'large'} />
+        ) : (
+          <ReferralContent items={filtered} />
+        )}
       </View>
     </ScrollView>
   );
