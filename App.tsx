@@ -15,6 +15,8 @@ import ViewReferral from './src/referral/ViewReferral';
 function App(): JSX.Element {
   const [index, setIndex] = useState(0);
 
+  const colorActive = (active: boolean) => (active ? 'green' : '#000');
+
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={'light-content'} backgroundColor={'red'} />
@@ -48,17 +50,33 @@ function App(): JSX.Element {
           variant="primary">
           <Tab.Item
             title="Create"
-            titleStyle={{fontSize: 12, color: '#000'}}
-            icon={{
+            titleStyle={active => ({
+              fontSize: 12,
+              color: colorActive(active),
+            })}
+            icon={active => ({
               name: 'document-text-outline',
               type: 'ionicon',
-              color: 'green',
+              color: colorActive(active),
+            })}
+            containerStyle={{
+              backgroundColor: '#fff',
             }}
           />
           <Tab.Item
             title="View"
-            titleStyle={{fontSize: 12, color: '#000'}}
-            icon={{name: 'briefcase', type: 'ionicon', color: 'green'}}
+            titleStyle={active => ({
+              fontSize: 12,
+              color: colorActive(active),
+            })}
+            icon={active => ({
+              name: 'briefcase',
+              type: 'ionicon',
+              color: colorActive(active),
+            })}
+            containerStyle={{
+              backgroundColor: '#fff',
+            }}
           />
         </Tab>
       </View>
