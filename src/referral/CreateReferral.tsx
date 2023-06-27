@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import InputHeader from '../components/InputHeader';
 import InputLabel from '../components/InputLabel';
+import InputPicker from '../components/InputPicker';
 
 type Referral = {
   firstname?: string;
@@ -27,9 +28,7 @@ export default () => {
     });
   };
 
-  console.log({
-    data,
-  });
+  console.log(data);
 
   return (
     <ScrollView>
@@ -62,9 +61,19 @@ export default () => {
           onInputTextChange={onChangeData('address2')}
         />
         <InputLabel label="Suburb" onInputTextChange={onChangeData('suburb')} />
+        <InputPicker
+          label="State"
+          data={[{value: 'Cebu'}, {value: 'Manila'}]}
+          onItemSelected={onChangeData('state')}
+        />
         <InputLabel
           label="Postcode"
           onInputTextChange={onChangeData('postcode')}
+        />
+        <InputPicker
+          label="Country"
+          data={[{value: 'Philippines'}, {value: 'Australia'}]}
+          onItemSelected={onChangeData('country')}
         />
 
         <Button
