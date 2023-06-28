@@ -1,12 +1,16 @@
 import {Button, Icon, Text} from '@rneui/themed';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import ModalSelector from 'react-native-modal-selector';
 
 type RowsPerPageControllerProps = {
   listCount: number;
+  onRowsSelected: (rows: number) => void;
 };
-const RowsPerPageController = ({listCount}: RowsPerPageControllerProps) => {
+const RowsPerPageController = ({
+  listCount,
+  onRowsSelected,
+}: RowsPerPageControllerProps) => {
   const RowsPerPageItems = [
     {
       key: 1,
@@ -18,6 +22,10 @@ const RowsPerPageController = ({listCount}: RowsPerPageControllerProps) => {
     },
   ];
   const [rowsToDisplay, setRowsToDisplay] = useState(10);
+
+  useEffect(() => {
+    onRowsSelected(rowsToDisplay);
+  }, [onRowsSelected, rowsToDisplay]);
 
   return (
     <View

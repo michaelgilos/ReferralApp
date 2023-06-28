@@ -1,6 +1,7 @@
 import {Button, SearchBar, Text} from '@rneui/themed';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
+import {Referral} from '../../types';
 import ReferralContent from './components/ReferralContent';
 import RowsPerPageController from './components/RowsPerPageController';
 import {useGetAllReferrals} from './hooks/useGetAllReferrals';
@@ -21,23 +22,28 @@ const Header = () => (
 
 export default () => {
   const [search, setSearch] = useState('');
-
+  const [rowsToDisplay, setRowsToDisplay] = useState(0);
+  const [referrals, setReferrals] = useState<Referral[]>([]);
   const {data, isLoading} = useGetAllReferrals();
 
-  console.log(data);
+  useEffect(() => {
+    let filtered = data
+      ? data.filter(item => {
+          if (search.match(/^-?\d+$/)) {
+            return item.mobile?.includes(search);
+          }
 
-  const filtered = data
-    ? data.filter(item => {
-        if (search.match(/^-?\d+$/)) {
-          return item.mobile?.includes(search);
-        }
+          return (
+            item.firstname?.toLowerCase().includes(search) ||
+            item.email?.toLowerCase().includes(search)
+          );
+        })
+      : [];
 
-        return (
-          item.firstname?.toLowerCase().includes(search) ||
-          item.email?.toLowerCase().includes(search)
-        );
-      })
-    : [];
+    filtered = filtered.slice(0, rowsToDisplay);
+
+    setReferrals(filtered);
+  }, [data, rowsToDisplay, search]);
 
   return (
     <ScrollView>
@@ -78,8 +84,11 @@ export default () => {
           <ActivityIndicator size={'large'} />
         ) : (
           <>
-            <ReferralContent items={filtered} />
-            <RowsPerPageController listCount={filtered.length} />
+            <ReferralContent items={referrals} />
+            <RowsPerPageController
+              listCount={referrals.length}
+              onRowsSelected={setRowsToDisplay}
+            />
           </>
         )}
       </View>
