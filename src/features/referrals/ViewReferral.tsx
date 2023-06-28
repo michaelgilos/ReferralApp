@@ -53,16 +53,18 @@ export default () => {
 
   console.log(data);
 
-  const filtered = data?.filter(item => {
-    if (search.match(/^-?\d+$/)) {
-      return item.mobile?.includes(search);
-    }
+  const filtered = data
+    ? data.filter(item => {
+        if (search.match(/^-?\d+$/)) {
+          return item.mobile?.includes(search);
+        }
 
-    return (
-      item.firstname?.toLowerCase().includes(search) ||
-      item.email?.toLowerCase().includes(search)
-    );
-  });
+        return (
+          item.firstname?.toLowerCase().includes(search) ||
+          item.email?.toLowerCase().includes(search)
+        );
+      })
+    : [];
 
   return (
     <ScrollView>
