@@ -106,11 +106,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: '#ddd',
   },
-  referral: {
-    flexDirection: 'row',
-    borderTopWidth: 0.5,
-    borderBottomWidth: 0.5,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-  },
 });
