@@ -16,7 +16,7 @@ import ViewReferral from './src/features/referrals/ViewReferral';
 export const queryClient = new QueryClient();
 
 function App(): JSX.Element {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
 
   const colorActive = (active: boolean) => (active ? 'green' : '#000');
 

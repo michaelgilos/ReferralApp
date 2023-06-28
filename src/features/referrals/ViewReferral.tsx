@@ -1,7 +1,8 @@
-import {Button, Icon, SearchBar, Text} from '@rneui/themed';
+import {Button, SearchBar, Text} from '@rneui/themed';
 import React, {useState} from 'react';
 import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
-import {Referral} from '../../types';
+import ReferralContent from './components/ReferralContent';
+import RowsPerPageController from './components/RowsPerPageController';
 import {useGetAllReferrals} from './hooks/useGetAllReferrals';
 
 const Header = () => (
@@ -16,34 +17,6 @@ const Header = () => (
       <Text style={{fontSize: 14}}>ACTIONS</Text>
     </View>
   </View>
-);
-
-const ReferralItem = ({data}: {data: Referral}) => {
-  const {firstname, mobile, email} = data;
-
-  return (
-    <View style={styles.referral}>
-      <View style={{flex: 3, justifyContent: 'center'}}>
-        <Text style={{fontSize: 14, color: '#000'}}>{firstname}</Text>
-        <Text>{email}</Text>
-      </View>
-      <View style={{flex: 2, justifyContent: 'center'}}>
-        <Text style={{fontSize: 14}}>{mobile}</Text>
-      </View>
-      <View style={{flex: 1, justifyContent: 'center'}}>
-        <Icon name="settings" />
-      </View>
-    </View>
-  );
-};
-
-// TODO this could be a flatlist
-const ReferralContent = ({items}: {items: Referral[]}) => (
-  <>
-    {items.map((item: Referral) => (
-      <ReferralItem data={item} key={item.firstname} />
-    ))}
-  </>
 );
 
 export default () => {
@@ -104,7 +77,10 @@ export default () => {
         {isLoading ? (
           <ActivityIndicator size={'large'} />
         ) : (
-          <ReferralContent items={filtered} />
+          <>
+            <ReferralContent items={filtered} />
+            <RowsPerPageController listCount={filtered.length} />
+          </>
         )}
       </View>
     </ScrollView>
